@@ -10,8 +10,8 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-DHohHMEQ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-OfllVh7Y.css">
+    <script type="module" crossorigin src="./assets/index-DyMPRULn.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BpDbIEg4.css">
   </head>
   <body>
     <main
@@ -28,6 +28,20 @@
         <p id="google-status" role="status"></p>
       </div>
     </main>
+    <main id="invite-entry" class="entry-page" hidden>
+      <section class="entry-card">
+        <img src="./icon.svg" width="48" height="48" alt="" />
+        <h1>Intonavio V1-2</h1>
+        <form id="invite-form">
+          <label for="invite-code" data-i18n="inviteTitle">輸入個人推薦碼</label>
+          <input id="invite-code" type="password" required maxlength="64" autocomplete="current-password" />
+          <p data-i18n="inviteNotice">加入的歌名會記在你的帳戶，供管理員查看。</p>
+          <button id="invite-submit" class="primary" data-i18n="inviteContinue">進入練唱</button>
+        </form>
+        <p id="invite-status" role="status"></p>
+        <a id="invite-admin" data-i18n="adminLink">管理後台</a>
+      </section>
+    </main>
     <div id="practice-app" hidden>
       <header class="topbar">
         <a class="brand" href="./"
@@ -36,6 +50,7 @@
           ></a
         >
         <div class="top-actions">
+          <a id="practice-admin" hidden data-i18n="adminLink">管理後台</a>
           <button
             id="google-sign-out"
             class="ghost"
@@ -361,13 +376,6 @@
           請使用你有權下載和處理的公開影片。
         </p>
         <div id="youtube-preview"></div>
-        <div id="cloud-access" hidden>
-          <label for="cloud-code" data-i18n="cloudCode">雲端分析碼</label>
-          <input id="cloud-code" type="password" autocomplete="off" />
-          <p data-i18n="cloudCodeHint">
-            新歌或重試需要分析碼。線上歌庫已有三軌的歌曲可直接開啟。
-          </p>
-        </div>
         <p id="dialog-status" role="status"></p>
         <button id="prepare" class="primary" data-i18n="addAndPrepare" hidden>
           加入並處理歌曲</button
@@ -385,19 +393,6 @@
         >
           用練唱工具處理 YouTube 歌曲
         </button>
-      </dialog>
-      <dialog id="cloud-task-dialog" aria-labelledby="cloud-task-title">
-        <div class="section-heading">
-          <h2 id="cloud-task-title" data-i18n="cloudMode">雲端三軌分析</h2>
-          <button id="close-cloud-task" class="ghost" data-i18n="close">關閉</button>
-        </div>
-        <p class="muted" data-i18n="cloudFileNotice">請只上傳有權處理的音檔。知道成品連結的人可以播放。</p>
-        <form id="cloud-task-form">
-          <label for="cloud-task-code" class="sr-only" data-i18n="cloudCode">雲端分析碼</label>
-          <input id="cloud-task-code" type="password" autocomplete="off" required />
-          <button type="submit" class="primary" data-i18n="addAndPrepare">加入並處理歌曲</button>
-        </form>
-        <p id="cloud-task-status" role="status"></p>
       </dialog>
       <dialog id="environment-dialog" aria-labelledby="environment-title">
         <div class="section-heading">
