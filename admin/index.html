@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Intonavio V1-2 管理後台</title>
+  <script type="module" crossorigin src="../assets/index-C1VmO0Kc.js"></script>
+  <link rel="modulepreload" crossorigin href="../assets/dom-BB87m1bJ.js">
+  <link rel="stylesheet" crossorigin href="../assets/index-DBH8CU3b.css">
+</head>
+<body>
+  <header>
+    <div><a href="../">Intonavio V1-2</a><h1>管理後台</h1></div>
+    <button id="logout" hidden>登出</button>
+  </header>
+  <main>
+    <section id="login" class="card login">
+      <h2>使用管理員的 Google 帳戶登入</h2>
+      <div id="google-button"></div>
+    </section>
+    <p id="status" role="status"></p>
+    <div id="dashboard" hidden>
+      <div class="toolbar"><h2>使用概況</h2><button id="refresh">重新整理</button></div>
+      <dl id="totals" class="totals"></dl>
+      <nav aria-label="後台功能">
+        <button data-section="members" aria-pressed="true">使用者與審核</button>
+        <button data-section="songs" aria-pressed="false">歌曲統計</button>
+        <button data-section="jobs" aria-pressed="false">任務與日誌</button>
+        <button data-section="usage" aria-pressed="false">資源用量</button>
+        <button data-section="settings" aria-pressed="false">通知設定</button>
+      </nav>
+      <section id="members" class="card">
+        <div class="table-wrap"><table>
+          <thead><tr><th>使用者</th><th>權限</th><th>狀態</th><th>已加入歌曲</th><th>申請通知</th><th>操作</th></tr></thead>
+          <tbody id="member-rows"></tbody>
+        </table></div>
+        <section id="member-detail" class="detail" hidden><h3 id="member-title"></h3><ul id="member-songs"></ul></section>
+      </section>
+      <section id="songs" class="card" hidden>
+        <div class="table-wrap"><table><thead><tr><th>歌名</th><th>加入人數</th><th>最近加入</th></tr></thead><tbody id="song-rows"></tbody></table></div>
+      </section>
+      <section id="jobs" class="card" hidden>
+        <div class="links" aria-label="各服務的原始日誌">
+          <a href="https://dashboard.render.com/web/srv-dc0rnae1egvs738s2no0/logs" target="_blank" rel="noreferrer">Render 日誌</a>
+          <a href="https://dash.cloudflare.com/77cfe75b0b69113183a755435c70c20b/workers/services/view/intonavio-v1-2-library/production" target="_blank" rel="noreferrer">Cloudflare Worker</a>
+          <a href="https://modal.com/apps/shoanchiou/main/deployed/intonavio-v1-2" target="_blank" rel="noreferrer">Modal 日誌</a>
+        </div>
+        <h2>最新任務</h2>
+        <div class="table-wrap"><table><thead><tr><th>歌名</th><th>狀態</th><th>分析時間</th><th>送出時間</th><th>操作</th></tr></thead><tbody id="job-rows"></tbody></table></div>
+        <section id="job-detail" class="detail" hidden><h3 id="job-title"></h3><p id="job-summary"></p><ol id="job-events"></ol></section>
+        <h2 class="caption">最新日誌</h2>
+        <div class="table-wrap"><table><thead><tr><th>時間</th><th>服務</th><th>事件</th><th>歌曲／細節</th></tr></thead><tbody id="event-rows"></tbody></table></div>
+      </section>
+      <section id="usage" class="card" hidden>
+        <h2>本月 Modal GPU 用量</h2>
+        <p id="usage-summary" class="caption"></p>
+        <div class="table-wrap"><table><thead><tr><th>GPU</th><th>執行次數</th><th>有計時的次數</th><th>任務執行時間</th></tr></thead><tbody id="usage-rows"></tbody></table></div>
+        <p class="caption">此處統計 V1-2 已收到的任務計時。完整費用、閒置時間與剩餘額度請查看 Modal。</p>
+        <a href="https://modal.com/settings/shoanchiou/usage" target="_blank" rel="noreferrer">Modal 使用量與帳單</a>
+      </section>
+      <section id="settings" class="card" hidden>
+        <h2>新使用者申請通知</h2>
+        <p id="mail-status" class="caption"></p>
+        <form id="recipients-form">
+          <label for="recipients">收件地址，以逗號分隔</label>
+          <input id="recipients" required maxlength="2540">
+          <div><button class="primary">儲存收件地址</button></div>
+        </form>
+      </section>
+    </div>
+  </main>
+  <dialog id="edit-dialog">
+    <form id="edit-form">
+      <h2>編輯使用者</h2>
+      <label for="edit-name">顯示名稱</label><input id="edit-name" required maxlength="60">
+      <label for="edit-role">權限</label>
+      <select id="edit-role"><option value="member">練唱使用者</option><option value="admin">管理員</option></select>
+      <label for="edit-state">存取狀態</label>
+      <select id="edit-state"><option value="pending">待審核</option><option value="approved">已核准</option><option value="disabled">已停用</option></select>
+      <p id="edit-status" role="status"></p>
+      <div class="actions"><button class="primary">儲存</button><button id="edit-cancel" type="button">取消</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

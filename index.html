@@ -10,8 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-B1DzUGZE.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BpDbIEg4.css">
+    <script type="module" crossorigin src="./assets/index-B984HSLs.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-CgHiQSFL.css">
   </head>
   <body>
     <main
@@ -22,25 +23,16 @@
     >
       <div class="entry-card">
         <img src="./icon.svg" width="48" height="48" alt="" />
-        <h1 id="google-title">Intonavio</h1>
+        <h1 id="google-title">Intonavio V1-2</h1>
         <p data-i18n="googleEnter">使用 Google 帳號登入，開始唱歌音準練習。</p>
+        <p data-i18n="googleNotice">第一次登入會送出審核申請。加入的歌曲會記在你的帳戶。</p>
         <div id="google-button"></div>
         <p id="google-status" role="status"></p>
+        <div class="entry-actions">
+          <button id="google-recheck" data-i18n="googleRecheck" hidden>查詢審核狀態</button>
+          <button id="google-switch" data-i18n="googleSignOut" hidden>登出</button>
+        </div>
       </div>
-    </main>
-    <main id="invite-entry" class="entry-page" hidden>
-      <section class="entry-card">
-        <img src="./icon.svg" width="48" height="48" alt="" />
-        <h1>Intonavio V1-2</h1>
-        <form id="invite-form">
-          <label for="invite-code" data-i18n="inviteTitle">輸入個人推薦碼</label>
-          <input id="invite-code" type="password" required maxlength="64" autocomplete="current-password" />
-          <p data-i18n="inviteNotice">加入的歌名會記在你的帳戶，供管理員查看。</p>
-          <button id="invite-submit" class="primary" data-i18n="inviteContinue">進入練唱</button>
-        </form>
-        <p id="invite-status" role="status"></p>
-        <a id="invite-admin" data-i18n="adminLink">管理後台</a>
-      </section>
     </main>
     <div id="practice-app" hidden>
       <header class="topbar">
@@ -50,7 +42,7 @@
           ></a
         >
         <div class="top-actions">
-          <a id="practice-admin" hidden data-i18n="adminLink">管理後台</a>
+          <a id="practice-admin" href="./admin/" hidden data-i18n="adminLink">管理後台</a>
           <button
             id="google-sign-out"
             class="ghost"
@@ -87,6 +79,11 @@
           /><button id="demo" class="ghost wide" data-i18n="demo">
             試試音階暖身
           </button>
+          <div id="cloud-wait" class="cloud-library" hidden>
+            <p id="cloud-wait-status" role="status"></p>
+            <button id="cloud-pause" class="ghost wide" data-i18n="cloudPause" hidden>先練其他歌曲</button>
+            <button id="cloud-resume" class="ghost wide" data-i18n="cloudProgress" hidden>查看分析進度</button>
+          </div>
           <div id="library" class="song-list"></div>
           <details id="cloud-library" class="cloud-library" hidden>
             <summary data-i18n="onlineLibrary">線上歌庫</summary>
