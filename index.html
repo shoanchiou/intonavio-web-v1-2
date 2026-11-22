@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-FuiKSbSP.js"></script>
+    <script type="module" crossorigin src="./assets/index-Uy4TMqb0.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-ohiFijjO.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-Bgs2ffrE.css">
   </head>
   <body>
     <main
@@ -159,24 +159,6 @@
             <p id="mic-warning" class="mic-warning" role="status" hidden></p>
           </details>
           <section class="practice-card">
-            <button
-              id="toggle-video"
-              class="ghost video-toggle"
-              hidden
-              data-i18n="showVideo"
-            >
-              顯示 YouTube 影片
-            </button>
-            <div id="video" class="video" hidden></div>
-            <a
-              id="watch-video"
-              class="video-toggle"
-              hidden
-              target="_blank"
-              rel="noreferrer"
-              data-i18n="openWatch"
-              >在 YouTube 開啟</a
-            >
             <div class="metrics">
               <div>
                 <span data-i18n="note">你的音高</span
@@ -194,12 +176,31 @@
                 ><small id="score-count">0 frames</small>
               </div>
             </div>
-            <div class="chart-wrap">
-              <canvas
-                id="chart"
-                role="img"
-                aria-label="音高走勢圖：參考旋律與你的聲音"
-              ></canvas>
+            <div class="practice-video-controls">
+              <button id="toggle-video" class="ghost" type="button" aria-controls="video" hidden data-i18n="showVideo">
+                顯示 YouTube 影片
+              </button>
+              <button id="toggle-video-background" class="ghost" type="button" aria-controls="practice-view" aria-pressed="false" hidden>
+                選擇背景影片
+              </button>
+              <button id="remove-practice-video" class="ghost" type="button" hidden data-i18n="removePracticeVideo">
+                移除影片
+              </button>
+              <input id="practice-video-file" type="file" accept="video/*" hidden />
+              <a id="watch-video" hidden target="_blank" rel="noreferrer" data-i18n="openWatch">在 YouTube 開啟</a>
+            </div>
+            <div id="practice-view" class="practice-view">
+              <div id="video" class="practice-video" hidden></div>
+              <div id="practice-video-frame" class="practice-video practice-video-local" hidden>
+                <video id="practice-video" muted playsinline preload="metadata" aria-hidden="true"></video>
+              </div>
+              <div class="chart-wrap">
+                <canvas
+                  id="chart"
+                  role="img"
+                  aria-label="音高走勢圖：參考旋律與你的聲音"
+                ></canvas>
+              </div>
             </div>
             <div class="chart-legend">
               <span
@@ -401,6 +402,13 @@
             檢查歌曲
           </button>
         </form>
+        <label id="cloud-mode-label" hidden>
+          <span data-i18n="cloudAnalysisMode">雲端分析方式</span>
+          <select id="cloud-mode">
+            <option value="tracks" data-i18n="cloudModeTracks">三軌分析</option>
+            <option value="acapella" data-i18n="cloudModeAcapella">清唱，直接分析音高</option>
+          </select>
+        </label>
         <p class="muted" data-i18n="youtubeHint">
           請使用你有權下載和處理的公開影片。
         </p>

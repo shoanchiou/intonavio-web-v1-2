@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Intonavio V1-2 管理後台</title>
-  <script type="module" crossorigin src="../assets/index-6kIW3EEl.js"></script>
+  <script type="module" crossorigin src="../assets/index-NdDhYyc2.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/dom-BB87m1bJ.js">
   <link rel="stylesheet" crossorigin href="../assets/index-DBH8CU3b.css">
 </head>
@@ -41,10 +41,12 @@
       </section>
       <section id="jobs" class="card" hidden>
         <div class="links" aria-label="各服務的原始日誌">
-          <a href="https://dashboard.render.com/web/srv-dc0rnae1egvs738s2no0/logs" target="_blank" rel="noreferrer">Render 日誌</a>
-          <a href="https://dash.cloudflare.com/77cfe75b0b69113183a755435c70c20b/workers/services/view/intonavio-v1-2-library/production" target="_blank" rel="noreferrer">Cloudflare Worker</a>
+          <a id="render-log" target="_blank" rel="noreferrer" hidden>Render 日誌</a>
+          <a id="worker-log" target="_blank" rel="noreferrer" hidden>Cloudflare Worker</a>
           <a href="https://modal.com/apps/shoanchiou/main/deployed/intonavio-v1-2" target="_blank" rel="noreferrer">Modal 日誌</a>
         </div>
+        <h2>卡住或失敗的任務</h2>
+        <div class="table-wrap"><table><thead><tr><th>任務</th><th>階段</th><th>取音／分離／儲存次數</th><th>最後心跳</th><th>原因</th><th>操作</th></tr></thead><tbody id="attention-rows"></tbody></table></div>
         <h2>最新任務</h2>
         <div class="table-wrap"><table><thead><tr><th>歌名</th><th>狀態</th><th>分析時間</th><th>送出時間</th><th>操作</th></tr></thead><tbody id="job-rows"></tbody></table></div>
         <section id="job-detail" class="detail" hidden><h3 id="job-title"></h3><p id="job-summary"></p><ol id="job-events"></ol></section>
@@ -52,6 +54,9 @@
         <div class="table-wrap"><table><thead><tr><th>時間</th><th>服務</th><th>事件</th><th>歌曲／細節</th></tr></thead><tbody id="event-rows"></tbody></table></div>
       </section>
       <section id="usage" class="card" hidden>
+        <h2>今日 GPU 與 R2 用量</h2>
+        <p id="daily-usage"></p>
+        <p id="r2-usage"></p>
         <h2>本月 Modal GPU 用量</h2>
         <p id="usage-summary" class="caption"></p>
         <div class="table-wrap"><table><thead><tr><th>GPU</th><th>執行次數</th><th>有計時的次數</th><th>任務執行時間</th></tr></thead><tbody id="usage-rows"></tbody></table></div>
