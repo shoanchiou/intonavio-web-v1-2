@@ -1,4 +1,4 @@
-import { detectPitch } from "./yin.js?v=3";
+import { detectPitch } from "./yin.js?v=4";
 
 const minimumLiveRms = 0.0025;
 

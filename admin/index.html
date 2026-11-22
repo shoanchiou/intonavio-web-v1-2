@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Intonavio V1-2 管理後台</title>
-  <script type="module" crossorigin src="../assets/index-C1VmO0Kc.js"></script>
+  <script type="module" crossorigin src="../assets/index-6kIW3EEl.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/dom-BB87m1bJ.js">
   <link rel="stylesheet" crossorigin href="../assets/index-DBH8CU3b.css">
 </head>
@@ -60,11 +60,11 @@
       </section>
       <section id="settings" class="card" hidden>
         <h2>新使用者申請通知</h2>
-        <p id="mail-status" class="caption"></p>
+        <p id="mail-status" class="caption" role="status"></p>
         <form id="recipients-form">
           <label for="recipients">收件地址，以逗號分隔</label>
           <input id="recipients" required maxlength="2540">
-          <div><button class="primary">儲存收件地址</button></div>
+          <div><button class="primary">儲存收件地址</button> <button id="check-mail" type="button">檢查寄信服務</button></div>
         </form>
       </section>
     </div>
