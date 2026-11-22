@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-Uy4TMqb0.js"></script>
+    <script type="module" crossorigin src="./assets/index-BhMakhQF.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-Bgs2ffrE.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DXV_yc7i.css">
   </head>
   <body>
     <main
@@ -133,7 +133,7 @@
               aria-label="麥克風峰值"
             ></meter>
           </div>
-          <details id="mic-settings" class="mic-settings">
+          <details id="mic-settings" class="mic-settings" open>
             <summary data-i18n="micSettings">麥克風設定</summary>
             <div class="mic-settings-controls">
               <div class="mic-gain-control">
@@ -156,6 +156,13 @@
                 測試麥克風
               </button>
             </div>
+            <div class="mic-alignment-controls">
+              <label for="latency" data-i18n="latency">麥克風對齊</label>
+              <input id="latency" type="number" min="-500" max="500" step="10" value="0" aria-describedby="alignment-hint" />
+              <span>ms</span>
+              <button id="mic-alignment" class="ghost" type="button" data-i18n="micAlignmentStart">試唱校準</button>
+              <small id="alignment-hint" data-i18n="latencyHint">也可以手動微調毫秒值。</small>
+            </div>
             <p id="mic-warning" class="mic-warning" role="status" hidden></p>
           </details>
           <section class="practice-card">
@@ -175,6 +182,13 @@
                 ><strong id="score">—</strong
                 ><small id="score-count">0 frames</small>
               </div>
+            </div>
+            <div class="practice-audio-bar">
+              <label class="playback-volume">
+                <span data-i18n="playbackVolume">播放音量</span>
+                <input id="playback-volume" type="range" min="0" max="100" value="100" />
+                <output id="playback-volume-value" for="playback-volume">100%</output>
+              </label>
             </div>
             <div class="practice-video-controls">
               <button id="toggle-video" class="ghost" type="button" aria-controls="video" hidden data-i18n="showVideo">
@@ -245,11 +259,6 @@
                   <option value="1.5">1.5×</option>
                 </select></label
               >
-              <label class="playback-volume">
-                <span data-i18n="playbackVolume">播放音量</span>
-                <input id="playback-volume" type="range" min="0" max="100" value="100" />
-                <output id="playback-volume-value" for="playback-volume">100%</output>
-              </label>
               <div class="loop-controls">
                 <button id="a" class="ghost" data-i18n="markerA" disabled>
                   設 A 起點</button
@@ -284,18 +293,6 @@
                 <option value="12" data-i18n="higher">高八度</option></select
               ><small data-i18n="octaveHint"
                 >跟唱時如果比原唱低或高一個八度，可在這裡調整參考線。播放維持原音。</small
-              ></label
-            ><label
-              ><span data-i18n="latency">麥克風對齊</span
-              ><input
-                id="latency"
-                type="number"
-                min="-500"
-                max="500"
-                step="10"
-                value="0"
-              /><small data-i18n="latencyHint"
-                >數值為毫秒；依耳機延遲調整。</small
               ></label
             >
           </section>
@@ -430,6 +427,17 @@
         >
           用練唱工具處理 YouTube 歌曲
         </button>
+      </dialog>
+      <dialog id="mic-alignment-dialog" aria-labelledby="mic-alignment-title">
+        <div class="section-heading">
+          <h2 id="mic-alignment-title" data-i18n="micAlignmentStart">試唱校準</h2>
+        </div>
+        <p data-i18n="micAlignmentHint">戴上耳機。每回合聽到第三聲提示時，立刻唱一個舒服的長音，維持約一秒。</p>
+        <p id="mic-alignment-round" class="muted"></p>
+        <p id="mic-alignment-status" class="alignment-cue" role="status" aria-live="polite"></p>
+        <form method="dialog" class="button-row">
+          <button class="ghost" data-i18n="close">關閉</button>
+        </form>
       </dialog>
       <dialog id="environment-dialog" aria-labelledby="environment-title">
         <div class="section-heading">
