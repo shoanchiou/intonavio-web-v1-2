@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Intonavio V1-2 管理後台</title>
-  <script type="module" crossorigin src="../assets/index-6kIW3EEl.js"></script>
+  <script type="module" crossorigin src="../assets/index-DmF7_p3v.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/dom-BB87m1bJ.js">
-  <link rel="stylesheet" crossorigin href="../assets/index-DBH8CU3b.css">
+  <link rel="stylesheet" crossorigin href="../assets/index-7a2_VZ2O.css">
 </head>
 <body>
   <header>
@@ -41,22 +41,67 @@
       </section>
       <section id="jobs" class="card" hidden>
         <div class="links" aria-label="各服務的原始日誌">
-          <a href="https://dashboard.render.com/web/srv-dc0rnae1egvs738s2no0/logs" target="_blank" rel="noreferrer">Render 日誌</a>
-          <a href="https://dash.cloudflare.com/77cfe75b0b69113183a755435c70c20b/workers/services/view/intonavio-v1-2-library/production" target="_blank" rel="noreferrer">Cloudflare Worker</a>
+          <a id="render-log" target="_blank" rel="noreferrer" hidden>Render 日誌</a>
+          <a id="worker-log" target="_blank" rel="noreferrer" hidden>Cloudflare Worker</a>
           <a href="https://modal.com/apps/shoanchiou/main/deployed/intonavio-v1-2" target="_blank" rel="noreferrer">Modal 日誌</a>
         </div>
-        <h2>最新任務</h2>
-        <div class="table-wrap"><table><thead><tr><th>歌名</th><th>狀態</th><th>分析時間</th><th>送出時間</th><th>操作</th></tr></thead><tbody id="job-rows"></tbody></table></div>
+        <div class="section-bar">
+          <h2>問題統整與重試</h2>
+          <div class="inline-actions">
+            <button id="retry-all-issues" class="primary" type="button" hidden>重試全部失敗任務</button>
+          </div>
+        </div>
+        <div id="issue-summary" class="chip-bar" aria-label="依問題類型篩選"></div>
+        <div class="table-wrap"><table><thead><tr><th>任務</th><th>來源／狀態</th><th>階段</th><th>取音／分離／儲存</th><th>最後心跳</th><th>錯誤碼與原因</th><th>操作</th></tr></thead><tbody id="attention-rows"></tbody></table></div>
+        <div class="section-bar">
+          <h2>全部任務</h2>
+          <div class="inline-actions">
+            <div id="job-filters" class="chip-bar" role="group" aria-label="任務狀態篩選">
+              <button type="button" data-job-filter="all" aria-pressed="true">全部</button>
+              <button type="button" data-job-filter="attention" aria-pressed="false">異常</button>
+              <button type="button" data-job-filter="active" aria-pressed="false">處理中</button>
+              <button type="button" data-job-filter="done" aria-pressed="false">已完成</button>
+            </div>
+            <input id="job-search" type="search" placeholder="搜尋歌名或 ID…" maxlength="120" aria-label="搜尋任務">
+          </div>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>歌名</th><th>類型</th><th>狀態</th><th>分析時間</th><th>送出時間</th><th>操作</th></tr></thead><tbody id="job-rows"></tbody></table></div>
         <section id="job-detail" class="detail" hidden><h3 id="job-title"></h3><p id="job-summary"></p><ol id="job-events"></ol></section>
         <h2 class="caption">最新日誌</h2>
         <div class="table-wrap"><table><thead><tr><th>時間</th><th>服務</th><th>事件</th><th>歌曲／細節</th></tr></thead><tbody id="event-rows"></tbody></table></div>
       </section>
       <section id="usage" class="card" hidden>
-        <h2>本月 Modal GPU 用量</h2>
+        <h2>三服務資源總覽（Render · Modal · Cloudflare）</h2>
+        <div id="service-cards" class="service-grid"></div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>近 14 日三服務活動趨勢</h3>
+            <p class="caption">每日任務送出、Render 取音完成、Modal GPU 派送與任務完成數。</p>
+            <div id="activity-chart" class="svg-chart"></div>
+          </div>
+          <div class="chart-card">
+            <h3>近 14 日 Modal GPU 每日執行時間</h3>
+            <p class="caption">每日回報的 GPU 執行秒數（台北時間）。</p>
+            <div id="gpu-chart" class="svg-chart"></div>
+          </div>
+          <div class="chart-card">
+            <h3>Cloudflare R2 容量配置</h3>
+            <p class="caption">永久成品、暫存來源檔與剩餘可用空間（上限 10 GB，8 GB 警戒）。</p>
+            <div id="storage-chart" class="svg-chart"></div>
+          </div>
+          <div class="chart-card">
+            <h3>目前失敗原因分佈</h3>
+            <p class="caption">依服務歸屬統整所有待處理失敗任務。</p>
+            <div id="error-chart" class="svg-chart"></div>
+          </div>
+        </div>
+        <h2>本月 Modal GPU 用量明細</h2>
         <p id="usage-summary" class="caption"></p>
         <div class="table-wrap"><table><thead><tr><th>GPU</th><th>執行次數</th><th>有計時的次數</th><th>任務執行時間</th></tr></thead><tbody id="usage-rows"></tbody></table></div>
-        <p class="caption">此處統計 V1-2 已收到的任務計時。完整費用、閒置時間與剩餘額度請查看 Modal。</p>
-        <a href="https://modal.com/settings/shoanchiou/usage" target="_blank" rel="noreferrer">Modal 使用量與帳單</a>
+        <p class="caption">此處統計 V1-2 已收到的任務計時。完整費用、閒置時間與剩餘額度請查看各平台控制台。</p>
+        <div class="links">
+          <a href="https://modal.com/settings/shoanchiou/usage" target="_blank" rel="noreferrer">Modal 使用量與帳單</a>
+        </div>
       </section>
       <section id="settings" class="card" hidden>
         <h2>新使用者申請通知</h2>
