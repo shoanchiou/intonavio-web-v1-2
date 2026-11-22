@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-C5sEf0X-.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-B2fmZtl9.css">
+    <script type="module" crossorigin src="./assets/index-CFXc-G00.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/dom-DzSluj82.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-CE8bhvUN.css">
   </head>
   <body>
     <main
@@ -197,6 +197,11 @@
               <button id="toggle-video-background" class="ghost" type="button" aria-controls="practice-view" aria-pressed="false" hidden>
                 選擇背景影片
               </button>
+              <label id="video-background-brightness-control" class="video-brightness" hidden>
+                <span data-i18n="videoBackgroundBrightness">背景亮度</span>
+                <input id="video-background-brightness" type="range" min="35" max="100" step="1" value="82" />
+                <output id="video-background-brightness-value" for="video-background-brightness">82%</output>
+              </label>
               <button id="remove-practice-video" class="ghost" type="button" hidden data-i18n="removePracticeVideo">
                 移除影片
               </button>
@@ -442,20 +447,22 @@
         </p>
         <div id="youtube-preview"></div>
         <p id="dialog-status" role="status"></p>
-        <button id="prepare" class="primary" data-i18n="addAndPrepare" hidden>
-          加入並處理歌曲
-        </button>
-        <button id="add-stream" class="ghost" data-i18n="streamOnly" hidden>
-          加入並播放影片
-        </button>
-        <button
-          id="setup-prepare-song"
-          class="ghost"
-          data-i18n="prepareWithSetup"
-          hidden
-        >
-          用練唱工具處理 YouTube 歌曲
-        </button>
+        <div class="dialog-actions">
+          <button id="prepare" class="primary" data-i18n="addAndPrepare" hidden>
+            加入並處理歌曲
+          </button>
+          <button id="add-stream" class="ghost" data-i18n="streamOnly" hidden>
+            加入並播放影片
+          </button>
+          <button
+            id="setup-prepare-song"
+            class="ghost"
+            data-i18n="prepareWithSetup"
+            hidden
+          >
+            用練唱工具處理 YouTube 歌曲
+          </button>
+        </div>
       </dialog>
       <dialog id="mic-alignment-dialog" aria-labelledby="mic-alignment-title">
         <div class="section-heading">
