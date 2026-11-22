@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-BYkbPYNL.js"></script>
+    <script type="module" crossorigin src="./assets/index-C5sEf0X-.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-CMOGlLuT.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-B2fmZtl9.css">
   </head>
   <body>
     <main
@@ -296,7 +296,7 @@
               ></label
             >
           </section>
-          <section class="processing-card">
+          <section id="processing-card" class="processing-card">
             <div>
               <h2 data-i18n="separate">AI 分離人聲與伴奏</h2>
               <p data-i18n="separateHint">
@@ -320,6 +320,44 @@
               </button><button id="cancel" class="ghost" hidden data-i18n="cancel">
                 取消處理
               </button>
+            </div>
+            <div id="cloud-progress-panel" class="cloud-progress-panel" hidden>
+              <div class="cloud-progress-head">
+                <span id="cloud-progress-badge" class="cloud-badge"></span>
+                <strong id="cloud-progress-title" class="cloud-progress-title"></strong>
+                <span id="cloud-progress-elapsed" class="cloud-progress-elapsed"></span>
+              </div>
+              <ol id="cloud-progress-steps" class="cloud-steps" aria-label="雲端處理進度">
+                <li data-step="queued">
+                  <span class="cloud-step-dot" aria-hidden="true"></span>
+                  <span data-i18n="cloudStepQueued">已送出排隊</span>
+                </li>
+                <li data-step="fetching">
+                  <span class="cloud-step-dot" aria-hidden="true"></span>
+                  <span data-i18n="cloudStepFetching">取得音訊</span>
+                </li>
+                <li data-step="separating">
+                  <span class="cloud-step-dot" aria-hidden="true"></span>
+                  <span data-i18n="cloudStepSeparating">AI 分離與音高</span>
+                </li>
+                <li data-step="storing">
+                  <span class="cloud-step-dot" aria-hidden="true"></span>
+                  <span data-i18n="cloudStepStoring">儲存成品</span>
+                </li>
+              </ol>
+              <progress id="cloud-progress-bar" max="1" value="0"></progress>
+              <p id="cloud-progress-detail" class="cloud-progress-detail" role="status" aria-live="polite"></p>
+              <div id="cloud-progress-actions" class="button-row">
+                <button id="cloud-panel-pause" class="ghost" type="button" hidden data-i18n="cloudPause">
+                  先練其他歌曲
+                </button>
+                <button id="cloud-panel-resume" class="ghost" type="button" hidden data-i18n="cloudCheckProgress">
+                  重新檢查進度
+                </button>
+                <button id="cloud-panel-retry" class="ghost" type="button" hidden data-i18n="cloudRetry">
+                  重試雲端分析
+                </button>
+              </div>
             </div>
             <progress
               id="processing-progress"
@@ -571,5 +609,6 @@
       </dialog>
       <audio id="audio" preload="metadata"></audio>
     </div>
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
   </body>
 </html>
