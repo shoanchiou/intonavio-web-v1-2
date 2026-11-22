@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-DGys_iOQ.js"></script>
+    <script type="module" crossorigin src="./assets/index-CzqO8T76.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-CE8bhvUN.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-GGg0nWq1.css">
   </head>
   <body>
     <main
@@ -165,7 +165,7 @@
             </div>
             <p id="mic-warning" class="mic-warning" role="status" hidden></p>
           </details>
-          <section class="practice-card">
+          <section id="practice-card" class="practice-card">
             <div class="metrics">
               <div>
                 <span data-i18n="note">你的音高</span
@@ -197,10 +197,16 @@
               <button id="toggle-video-background" class="ghost" type="button" aria-controls="practice-view" aria-pressed="false" hidden>
                 選擇背景影片
               </button>
+              <button id="toggle-video-fill" class="ghost" type="button" aria-controls="practice-view" aria-pressed="true" hidden data-i18n="videoFill">
+                滿版裁切
+              </button>
+              <button id="toggle-video-fullscreen" class="ghost" type="button" aria-controls="practice-card" aria-pressed="false" hidden data-i18n="videoFullscreen">
+                全螢幕疊加
+              </button>
               <label id="video-background-brightness-control" class="video-brightness" hidden>
                 <span data-i18n="videoBackgroundBrightness">背景亮度</span>
-                <input id="video-background-brightness" type="range" min="35" max="100" step="1" value="82" />
-                <output id="video-background-brightness-value" for="video-background-brightness">82%</output>
+                <input id="video-background-brightness" type="range" min="35" max="100" step="1" value="85" />
+                <output id="video-background-brightness-value" for="video-background-brightness">85%</output>
               </label>
               <button id="remove-practice-video" class="ghost" type="button" hidden data-i18n="removePracticeVideo">
                 移除影片
