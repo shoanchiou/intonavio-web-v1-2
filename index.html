@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-CLS7ViH4.js"></script>
+    <script type="module" crossorigin src="./assets/index-BShuGlRg.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-CVunE1GV.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-l2zX--Jb.css">
   </head>
   <body>
     <main
@@ -53,7 +53,7 @@
           </button>
           <button id="environment" class="ghost" data-i18n="settings">
             練唱方式</button
-          ><span class="local-pill" data-i18n="local">本機處理・免費使用</span
+          ><span id="local-pill" class="local-pill" data-i18n="local">本機處理・免費使用</span
           ><label class="sr-only" for="language">Language</label
           ><select id="language">
             <option value="zh-TW">繁體中文</option>
@@ -491,7 +491,7 @@
             關閉
           </button>
         </div>
-        <section class="setup-choice">
+        <section class="setup-choice" id="setup-stream">
           <h3 data-i18n="browserMode">播 YouTube 跟唱</h3>
           <p data-i18n="browserDetails">
             不用安裝。貼上 YouTube
@@ -520,7 +520,7 @@
             加入 YouTube 歌曲
           </button>
         </section>
-        <section class="setup-choice">
+        <section class="setup-choice" id="setup-local">
           <h3 data-i18n="localMode">用 YouTube 連結做伴奏</h3>
           <div id="setup-running" hidden>
             <p data-i18n="toolRunning">練唱工具已開啟，可以直接處理歌曲。</p>
