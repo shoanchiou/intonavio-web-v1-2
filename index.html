@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-CKzCwOe9.js"></script>
+    <script type="module" crossorigin src="./assets/index-C4RmJuQ6.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-n4s2j7RE.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-BkdUsj17.css">
   </head>
   <body>
     <main
@@ -137,25 +137,9 @@
               aria-label="麥克風峰值"
             ></meter>
           </div>
-          <details id="mic-settings" class="mic-settings" open>
+          <details id="mic-settings" class="mic-settings">
             <summary data-i18n="micSettings">麥克風設定</summary>
             <div class="mic-settings-controls">
-              <div class="mic-gain-control">
-                <label for="mic-gain" data-i18n="micGain">麥克風增益</label>
-                <output id="mic-gain-value" for="mic-gain">100%</output>
-                <input
-                  id="mic-gain"
-                  type="range"
-                  min="25"
-                  max="200"
-                  step="5"
-                  value="100"
-                />
-              </div>
-              <label class="mic-auto-gain">
-                <input id="mic-auto-gain" type="checkbox" checked />
-                <span data-i18n="micAutoGain">自動增益</span>
-              </label>
               <label class="mic-filter-control">
                 <span data-i18n="micFilter">濾波與降噪</span>
                 <select id="mic-filter">
@@ -201,6 +185,24 @@
                 <input id="playback-volume" type="range" min="0" max="100" value="50" />
                 <output id="playback-volume-value" for="playback-volume">50%</output>
               </label>
+              <div class="practice-mic-gain">
+                <label class="mic-gain-inline">
+                  <span data-i18n="micGain">麥克風增益</span>
+                  <input
+                    id="mic-gain"
+                    type="range"
+                    min="25"
+                    max="200"
+                    step="5"
+                    value="100"
+                  />
+                  <output id="mic-gain-value" for="mic-gain">100%</output>
+                </label>
+                <label class="mic-auto-gain">
+                  <input id="mic-auto-gain" type="checkbox" checked />
+                  <span data-i18n="micAutoGain">自動增益</span>
+                </label>
+              </div>
             </div>
             <div class="practice-video-controls">
               <button id="toggle-video" class="ghost" type="button" aria-controls="video" hidden data-i18n="showVideo">
