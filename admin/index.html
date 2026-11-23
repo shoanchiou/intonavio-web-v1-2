@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Intonavio V1-2 管理後台</title>
-  <script type="module" crossorigin src="../assets/index-lrRBEGH-.js"></script>
+  <script type="module" crossorigin src="../assets/index-CVbAorKp.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/dom-BB87m1bJ.js">
-  <link rel="stylesheet" crossorigin href="../assets/index-BwO1D8Dh.css">
+  <link rel="stylesheet" crossorigin href="../assets/index-DZRrF92t.css">
 </head>
 <body>
   <header>
@@ -27,7 +27,7 @@
         <button data-section="songs" aria-pressed="false">歌曲統計</button>
         <button data-section="jobs" aria-pressed="false">任務與日誌</button>
         <button data-section="usage" aria-pressed="false">資源用量</button>
-        <button data-section="settings" aria-pressed="false">通知設定</button>
+        <button data-section="settings" aria-pressed="false">線路與通知設定</button>
       </nav>
       <section id="members" class="card">
         <div class="table-wrap"><table>
@@ -71,7 +71,10 @@
         <div class="table-wrap"><table><thead><tr><th>時間</th><th>服務</th><th>事件</th><th>歌曲／細節</th></tr></thead><tbody id="event-rows"></tbody></table></div>
       </section>
       <section id="usage" class="card" hidden>
-        <h2>三服務資源總覽（Render · Modal · Cloudflare）</h2>
+        <div class="section-bar" style="margin-top:0">
+          <h2>三服務資源總覽（Render · Modal · Cloudflare）</h2>
+          <button id="usage-route-pill" type="button" class="route-pill">目前取音線路：—</button>
+        </div>
         <div id="service-cards" class="service-grid"></div>
         <div class="chart-grid">
           <div class="chart-card">
@@ -106,6 +109,27 @@
         </div>
       </section>
       <section id="settings" class="card" hidden>
+        <h2>YouTube 取音線路切換（即時生效）</h2>
+        <p class="caption">可即時在 Render 主線路、Modal CPU 取音（方案 B）、自訂備援伺服器（方案 A）與自動故障轉移間切換，無須重新部署。</p>
+        <form id="fetch-route-form" class="route-form">
+          <label for="fetch-route">目前啟用線路</label>
+          <select id="fetch-route">
+            <option value="auto">自動備援（優先 Render，失敗自動切備援伺服器 → Modal CPU）</option>
+            <option value="render">Render 主線路（預設）</option>
+            <option value="modal">Modal CPU 取音（方案 B，內建 yt-dlp）</option>
+            <option value="backup">自訂備援伺服器（方案 A，獨立 Docker／Koyeb／Fly／家用 Tunnel）</option>
+          </select>
+          <label for="fetch-backup-url">自訂備援伺服器網址（方案 A，選填）</label>
+          <input id="fetch-backup-url" type="url" placeholder="https://your-backup-fetcher.example.com" maxlength="200">
+          <div class="actions">
+            <button class="primary" type="submit">儲存線路設定</button>
+            <button id="test-route-render" type="button">測試 Render</button>
+            <button id="test-route-backup" type="button">測試備援伺服器</button>
+            <button id="test-route-modal" type="button">測試 Modal</button>
+          </div>
+          <p id="fetch-route-status" class="caption" role="status"></p>
+        </form>
+        <hr class="settings-divider">
         <h2>新使用者申請通知</h2>
         <p id="mail-status" class="caption" role="status"></p>
         <form id="recipients-form">

@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-DtrJena3.js"></script>
+    <script type="module" crossorigin src="./assets/index-CLS7ViH4.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-GGg0nWq1.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-CVunE1GV.css">
   </head>
   <body>
     <main
@@ -368,6 +368,9 @@
                 <button id="cloud-panel-retry" class="ghost" type="button" hidden data-i18n="cloudRetry">
                   重試雲端分析
                 </button>
+                <button id="cloud-panel-manual" class="primary" type="button" hidden data-i18n="manualDownloadAction">
+                  自行下載並上傳音檔
+                </button>
               </div>
             </div>
             <progress
@@ -619,6 +622,33 @@
             </p>
           </div>
         </section>
+      </dialog>
+      <dialog id="manual-audio-dialog" aria-labelledby="manual-audio-title">
+        <div class="section-heading">
+          <h2 id="manual-audio-title" data-i18n="manualAudioTitle">改為自行下載並上傳音檔</h2>
+          <button id="close-manual-audio" class="ghost" type="button" data-i18n="close">關閉</button>
+        </div>
+        <p id="manual-audio-reason" class="manual-audio-reason"></p>
+        <p id="manual-audio-song" class="manual-audio-song"></p>
+        <ol class="manual-audio-steps">
+          <li>
+            <strong data-i18n="manualStep1Title">1. 複製 YouTube 連結並到外部下載網站存成音檔</strong>
+            <p class="muted" data-i18n="manualStep1Hint">可用下方的 Cobalt 或任何你慣用的線上 yt-dlp／YouTube 轉 MP3／M4A 網站下載音檔。</p>
+            <div class="button-row">
+              <button id="manual-copy-url" class="ghost" type="button" data-i18n="manualCopyUrl">複製 YouTube 連結</button>
+              <a id="manual-external-link" class="manual-ext-link" href="https://cobalt.tools/" target="_blank" rel="noreferrer" data-i18n="manualOpenCobalt">前往外部下載網站（Cobalt）↗</a>
+            </div>
+          </li>
+          <li>
+            <strong data-i18n="manualStep2Title">2. 上傳剛下載好的音檔繼續分析</strong>
+            <p class="muted" data-i18n="manualStep2Hint">支援 MP3、M4A、WAV、FLAC、OGG（上限 8 分鐘）。上傳後會直接跳過取音，並保留原 YouTube 影片背景。</p>
+            <div class="button-row">
+              <button id="manual-upload-btn" class="primary" type="button" data-i18n="manualUploadBtn">選擇已下載的音檔並上傳</button>
+            </div>
+            <input id="manual-audio-file" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg,.flac,.webm,.mp4" hidden />
+          </li>
+        </ol>
+        <p id="manual-audio-status" class="muted" role="status"></p>
       </dialog>
       <audio id="audio" preload="metadata"></audio>
     </div>
