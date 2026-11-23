@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-rHucKk16.js"></script>
+    <script type="module" crossorigin src="./assets/index-CKzCwOe9.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-CgfgiVT-.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-n4s2j7RE.css">
   </head>
   <body>
     <main
@@ -155,6 +155,14 @@
               <label class="mic-auto-gain">
                 <input id="mic-auto-gain" type="checkbox" checked />
                 <span data-i18n="micAutoGain">自動增益</span>
+              </label>
+              <label class="mic-filter-control">
+                <span data-i18n="micFilter">濾波與降噪</span>
+                <select id="mic-filter">
+                  <option value="vocal" selected data-i18n="micFilterVocal">人聲濾波（推薦）</option>
+                  <option value="strong" data-i18n="micFilterStrong">強力降噪（吵雜環境）</option>
+                  <option value="off" data-i18n="micFilterOff">關閉（原始訊號）</option>
+                </select>
               </label>
               <button id="mic-test" class="ghost" type="button" data-i18n="micTestStart">
                 測試麥克風

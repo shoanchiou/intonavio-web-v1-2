@@ -10,13 +10,22 @@ function hasClearPitch(result) {
 
 class PitchProcessor extends AudioWorkletProcessor {
   static get parameterDescriptors() {
-    return [{
-      name: "gain",
-      defaultValue: 1,
-      minValue: 0.25,
-      maxValue: 2,
-      automationRate: "k-rate",
-    }];
+    return [
+      {
+        name: "gain",
+        defaultValue: 1,
+        minValue: 0.25,
+        maxValue: 2,
+        automationRate: "k-rate",
+      },
+      {
+        name: "noiseGate",
+        defaultValue: 0,
+        minValue: 0,
+        maxValue: 2,
+        automationRate: "k-rate",
+      },
+    ];
   }
 
   constructor() {
@@ -31,6 +40,7 @@ class PitchProcessor extends AudioWorkletProcessor {
     this.ready = false;
     this.inputPeak = 0;
     this.peak = 0;
+    this.noiseFloor = 0.002;
     this.ordered = new Float32Array(1024);
     this.recent = this.ordered.subarray(512);
   }
@@ -39,6 +49,7 @@ class PitchProcessor extends AudioWorkletProcessor {
     if (!input) return true;
     try {
       const gain = parameters.gain[0];
+      const noiseGate = Math.round(parameters.noiseGate?.[0] ?? 0);
       for (let i = 0; i < input.length; i++) {
         const sample = input[i];
         const adjusted = sample * gain;
@@ -60,6 +71,10 @@ class PitchProcessor extends AudioWorkletProcessor {
         for (let j = 0; j < 1024; j++)
           this.ordered[j] = this.buffer[(this.writeIndex + j) % 1024];
         const analysisRate = sampleRate / this.step;
+        const gateActive = noiseGate > 0;
+        const floorCap = noiseGate >= 2 ? 0.05 : 0.03;
+        const floorMultiplier = noiseGate >= 2 ? 3.2 : 2.2;
+        const floorMinRms = noiseGate >= 2 ? 0.005 : minimumLiveRms;
         let result = detectPitch(
           this.ordered,
           analysisRate,
@@ -77,6 +92,21 @@ class PitchProcessor extends AudioWorkletProcessor {
           result = hasClearPitch(recent)
             ? recent
             : { ...result, hz: null, confidence: 0 };
+        }
+        if (gateActive) {
+          const rms = result.rms ?? 0;
+          const voiced = result.hz !== null && result.confidence >= 0.85;
+          if (rms < this.noiseFloor) {
+            this.noiseFloor += (rms - this.noiseFloor) * 0.2;
+          } else if (!voiced) {
+            const target = Math.min(rms, floorCap);
+            this.noiseFloor += (target - this.noiseFloor) * 0.06;
+          }
+          const gateThreshold = Math.max(floorMinRms, this.noiseFloor * floorMultiplier);
+          const strongClearVocal = noiseGate === 1 && result.confidence >= 0.96 && rms >= minimumLiveRms;
+          if (rms < gateThreshold && !strongClearVocal) {
+            result = { ...result, hz: null, confidence: 0 };
+          }
         }
         this.port.postMessage({
           ...result,

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Intonavio V1-2 管理後台</title>
-  <script type="module" crossorigin src="../assets/index-C43PXJVZ.js"></script>
+  <script type="module" crossorigin src="../assets/index-bnEr61l0.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/dom-BB87m1bJ.js">
-  <link rel="stylesheet" crossorigin href="../assets/index-DZRrF92t.css">
+  <link rel="stylesheet" crossorigin href="../assets/index-DkZnO-sy.css">
 </head>
 <body>
   <header>
@@ -129,6 +129,16 @@
           </div>
           <p id="fetch-route-status" class="caption" role="status"></p>
         </form>
+        <hr class="settings-divider">
+        <h2>人聲分離模型與二段純主唱提取（方案 3 開關）</h2>
+        <p class="caption">主分離固定使用 <code>mel_band_roformer_kim_ft_unwa.ckpt</code>；開啟後會再對人聲軌跑第二段 Karaoke 模型（<code>mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956.ckpt</code>），僅將純主唱送給 SwiftF0（播放仍保留完整人聲與伴奏，每首 GPU 時間與費用約加倍）。</p>
+        <div class="toggle-row">
+          <label class="toggle-label" for="karaoke-stage-toggle">
+            <input id="karaoke-stage-toggle" type="checkbox">
+            <span id="karaoke-stage-text">目前狀態：關閉（方案 1：單模型 Mel-Band RoFormer）</span>
+          </label>
+        </div>
+        <p id="separation-status" class="caption" role="status"></p>
         <hr class="settings-divider">
         <h2>yt-dlp 自動更新（每 12 小時有登入時檢查）</h2>
         <p id="yt-dlp-summary" class="caption" role="status">尚未檢查過 yt-dlp 版本。</p>
