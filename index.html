@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-BShuGlRg.js"></script>
+    <script type="module" crossorigin src="./assets/index-d_480LWF.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-l2zX--Jb.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-CgfgiVT-.css">
   </head>
   <body>
     <main
@@ -85,13 +85,17 @@
             <button id="cloud-resume" class="ghost wide" data-i18n="cloudProgress" hidden>查看分析進度</button>
           </div>
           <div id="library" class="song-list"></div>
-          <details id="cloud-library" class="cloud-library" hidden>
+          <details id="cloud-library" class="cloud-library" open hidden>
             <summary data-i18n="onlineLibrary">線上歌庫</summary>
             <form id="cloud-search">
               <label for="cloud-query" class="sr-only" data-i18n="cloudSearch">搜尋歌名、頻道或影片 ID</label>
               <input id="cloud-query" type="search" maxlength="160" />
               <button type="submit" class="ghost" data-i18n="search">搜尋</button>
             </form>
+            <div id="cloud-recommend-bar" class="cloud-recommend-bar" hidden>
+              <span data-i18n="cloudRecommended">為你推薦</span>
+              <button id="cloud-shuffle" type="button" class="ghost" data-i18n="cloudShuffle">換一批</button>
+            </div>
             <div id="cloud-results" class="song-list" aria-live="polite"></div>
           </details>
           <div class="privacy">
@@ -138,14 +142,14 @@
             <div class="mic-settings-controls">
               <div class="mic-gain-control">
                 <label for="mic-gain" data-i18n="micGain">麥克風增益</label>
-                <output id="mic-gain-value" for="mic-gain">100%</output>
+                <output id="mic-gain-value" for="mic-gain">50%</output>
                 <input
                   id="mic-gain"
                   type="range"
                   min="25"
                   max="200"
                   step="5"
-                  value="100"
+                  value="50"
                 />
               </div>
               <label class="mic-auto-gain">
