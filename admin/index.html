@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Intonavio V1-2 管理後台</title>
-  <script type="module" crossorigin src="../assets/index-Bh3U5UBx.js"></script>
+  <script type="module" crossorigin src="../assets/index-PggfvQ7P.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/dom-BB87m1bJ.js">
   <link rel="stylesheet" crossorigin href="../assets/index-Dt8cq1YZ.css">
 </head>
@@ -132,6 +132,12 @@
         <hr class="settings-divider">
         <h2>YouTube Cookie 設定與同步（Modal CPU／Render／備援共用）</h2>
         <p class="caption">貼上或載入 Netscape 格式的 <code>cookies.txt</code>（建議在瀏覽器開無痕視窗登入專用帳號後，以 <code>Get cookies.txt LOCALLY</code> 匯出並立即關閉無痕視窗，避免瀏覽器自動輪替失效）。儲存後會同步至 Modal CPU、Render 與備援伺服器，並在每次取音認領時自動帶入。</p>
+        <div class="links actions" style="align-items:center">
+          <a href="https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc" target="_blank" rel="noreferrer">前往 Get cookies.txt LOCALLY 擴充套件頁 ↗</a>
+          <button id="copy-cookie-ext-url" type="button">複製套件商店網址</button>
+          <button id="copy-cookie-yt-url" type="button">複製無痕匯出網址 (youtube.com/robots.txt)</button>
+          <a href="https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies" target="_blank" rel="noreferrer">yt-dlp 官方匯出步驟 ↗</a>
+        </div>
         <p id="cookie-summary" class="caption" role="status">尚未設定雲端動態 Cookie（未設定時回退使用容器 Secret）。</p>
         <form id="cookie-form" class="route-form">
           <label for="cookie-input">Netscape Cookie 內容（僅擷取 youtube.com 項目，儲存後不會回傳明文）</label>
