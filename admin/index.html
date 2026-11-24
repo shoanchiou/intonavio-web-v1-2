@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Intonavio V1-2 管理後台</title>
-  <script type="module" crossorigin src="../assets/index-bnEr61l0.js"></script>
+  <script type="module" crossorigin src="../assets/index-Bh3U5UBx.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/dom-BB87m1bJ.js">
-  <link rel="stylesheet" crossorigin href="../assets/index-DkZnO-sy.css">
+  <link rel="stylesheet" crossorigin href="../assets/index-Dt8cq1YZ.css">
 </head>
 <body>
   <header>
@@ -128,6 +128,21 @@
             <button id="test-route-modal" type="button">測試 Modal</button>
           </div>
           <p id="fetch-route-status" class="caption" role="status"></p>
+        </form>
+        <hr class="settings-divider">
+        <h2>YouTube Cookie 設定與同步（Modal CPU／Render／備援共用）</h2>
+        <p class="caption">貼上或載入 Netscape 格式的 <code>cookies.txt</code>（建議在瀏覽器開無痕視窗登入專用帳號後，以 <code>Get cookies.txt LOCALLY</code> 匯出並立即關閉無痕視窗，避免瀏覽器自動輪替失效）。儲存後會同步至 Modal CPU、Render 與備援伺服器，並在每次取音認領時自動帶入。</p>
+        <p id="cookie-summary" class="caption" role="status">尚未設定雲端動態 Cookie（未設定時回退使用容器 Secret）。</p>
+        <form id="cookie-form" class="route-form">
+          <label for="cookie-input">Netscape Cookie 內容（僅擷取 youtube.com 項目，儲存後不會回傳明文）</label>
+          <textarea id="cookie-input" rows="5" maxlength="65536" spellcheck="false" placeholder="# Netscape HTTP Cookie File&#10;.youtube.com	TRUE	/	TRUE	0	LOGIN_INFO	..."></textarea>
+          <div class="actions">
+            <button class="primary" type="submit">儲存並同步 Cookie</button>
+            <button id="cookie-import-btn" type="button">載入 cookies.txt 檔案</button>
+            <button id="cookie-clear-btn" class="danger" type="button">清除動態 Cookie</button>
+            <input id="cookie-file" type="file" accept=".txt,text/plain" hidden>
+          </div>
+          <p id="cookie-status" class="caption" role="status"></p>
         </form>
         <hr class="settings-divider">
         <h2>人聲分離模型與二段純主唱提取（方案 3 開關）</h2>

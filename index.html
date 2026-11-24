@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-C4RmJuQ6.js"></script>
+    <script type="module" crossorigin src="./assets/index-DtxPSBGm.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
     <link rel="stylesheet" crossorigin href="./assets/index-BkdUsj17.css">
   </head>
@@ -474,6 +474,9 @@
           <button id="prepare" class="primary" data-i18n="addAndPrepare" hidden>
             加入並處理歌曲
           </button>
+          <button id="dialog-manual-upload" class="ghost" type="button" data-i18n="manualDownloadAction" hidden>
+            自行下載並上傳音檔
+          </button>
           <button id="add-stream" class="ghost" data-i18n="streamOnly" hidden>
             加入並播放影片
           </button>
@@ -655,7 +658,7 @@
           </li>
           <li>
             <strong data-i18n="manualStep2Title">2. 上傳剛下載好的音檔繼續分析</strong>
-            <p class="muted" data-i18n="manualStep2Hint">支援 MP3、M4A、WAV、FLAC、OGG（上限 8 分鐘）。上傳後會直接跳過取音，並保留原 YouTube 影片背景。</p>
+            <p class="muted" data-i18n="manualStep2Hint">支援 MP3、M4A、WAV、FLAC、OGG（8 分鐘、24 MiB 內）。上傳後會照常跑雲端 AI 分離與音高分析，並自動歸檔至線上歌庫。</p>
             <div class="button-row">
               <button id="manual-upload-btn" class="primary" type="button" data-i18n="manualUploadBtn">選擇已下載的音檔並上傳</button>
             </div>
