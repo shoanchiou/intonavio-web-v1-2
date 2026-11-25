@@ -10,9 +10,9 @@
     <meta name="theme-color" content="#0e0f12" />
     <title>Intonavio V1-2｜唱歌音準練習</title>
     <link rel="icon" href="./icon.svg" />
-    <script type="module" crossorigin src="./assets/index-ROo7xGEd.js"></script>
+    <script type="module" crossorigin src="./assets/index-D7pJ2bb-.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/dom-BB87m1bJ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-BkdUsj17.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-Fr4rYa_E.css">
   </head>
   <body>
     <main
@@ -320,6 +320,25 @@
                 >跟唱時如果比原唱低或高一個八度，可在這裡調整參考線。播放維持原音。</small
               ></label
             >
+            <div class="visual-sync-setting">
+              <div class="visual-sync-head">
+                <label for="visual-offset" data-i18n="visualSync">畫面同步微調</label>
+                <output id="visual-offset-value" for="visual-offset">+0 ms · 自動偵測</output>
+                <button id="visual-offset-reset" class="ghost visual-sync-reset" type="button" data-i18n="visualSyncReset" disabled>歸零</button>
+              </div>
+              <input
+                id="visual-offset"
+                type="range"
+                min="-300"
+                max="300"
+                step="10"
+                value="0"
+                aria-describedby="visual-offset-hint"
+              />
+              <small id="visual-offset-hint" data-i18n="visualSyncHint"
+                >依目前播放裝置即時偵測系統輸出延遲；若使用藍牙耳機覺得畫面比聲音快，可往右微調。</small
+              >
+            </div>
           </section>
           <section id="processing-card" class="processing-card">
             <div>
